@@ -1,12 +1,6 @@
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-.Python
 *.db
-*.log
+.git/
 test_backend.py
 server.log
-.git/
-.gitignore
-README.md
