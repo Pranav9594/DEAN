@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Appointment - Dean Appointments</title>
+    <link rel="stylesheet" href="css/request-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <svg class="top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <circle cx="12" cy="15" r="2"></circle>
+            </svg>
+            <span class="page-title">Dean Appointments</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1>Request an Appointment</h1>
+            <p class="description">Schedule a meeting with the Dean's Office. Fill out the form below and we'll get back to you with a confirmed time slot.</p>
+
+            <form id="appointmentForm" class="appointment-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select your role</option>
+                        <option value="Student">Student</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Visitor">Visitor</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="Enter your phone number"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date</label>
+                    <div class="date-input-wrapper">
+                        <input 
+                            type="date" 
+                            id="preferredDate" 
+                            name="preferredDate" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">Reason for Appointment</label>
+                    <textarea 
+                        id="reason" 
+                        name="reason" 
+                        rows="4" 
+                        placeholder="Please describe the purpose of your meeting..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+
+            <!-- Success/Error Message -->
+            <div id="messageContainer"></div>
+
+            <!-- Footer Info -->
+            <div class="footer-info">
+                <p>Office Hours: Monday - Friday, 9:00 AM - 5:00 PM</p>
+                <p>Contact: dmsbvdu@bharatividyapeeth.edu</p>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="request.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Request</span>
+            </a>
+            <a href="status.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Status</span>
+            </a>
+            <a href="index.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                </svg>
+                <span>More</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Success Popup Modal -->
+    <div id="successPopup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Success!</h2>
+            <p>Your appointment request has been submitted successfully.</p>
+            <p class="popup-note">To check your appointment status, go to the <strong>Status</strong> tab and enter your phone number.</p>
+            <button id="closePopup" class="popup-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="js/request-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #141d28;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    background: #141d28;
+    padding: 30px 20px 80px;
+    color: #eff1f5;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 20px 0 30px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.calendar-icon {
+    width: 60px;
+    height: 60px;
+    color: #3498db;
+    stroke-width: 1.5;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #eff1f5;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #95a5a6;
+    font-weight: 400;
+}
+
+/* Content */
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Info Sections */
+.info-section {
+    background: #34495e;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.info-section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #eff1f5;
+    margin-bottom: 12px;
+}
+
+.info-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #bdc3c7;
+}
+
+/* Office Hours */
+.office-hours {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.clock-icon {
+    width: 24px;
+    height: 24px;
+    color: #3498db;
+    flex-shrink: 0;
+}
+
+.hours-day {
+    font-size: 14px;
+    color: #eff1f5;
+    margin-bottom: 4px;
+}
+
+.hours-time {
+    font-size: 14px;
+    color: #bdc3c7;
+}
+
+/* Contact Items */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #bdc3c7;
+    line-height: 1.5;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-icon {
+    width: 20px;
+    height: 20px;
+    color: #3498db;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Admin Login Button */
+.admin-login-container {
+    margin: 0 0 20px 0;
+}
+
+.admin-login-btn {
+    width: 100%;
+    background: #34495e;
+    border: none;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: #eff1f5;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.admin-login-btn:hover {
+    background: #3d5368;
+}
+
+.lock-icon {
+    width: 20px;
+    height: 20px;
+    color: #eff1f5;
+}
+
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+    color: #95a5a6;
+}
+
+/* Version Info */
+.version-info {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.version-info p {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin: 4px 0;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #34495e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 0 8px;
+    border-top: 1px solid #2c3e50;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #95a5a6;
+    transition: color 0.2s;
+    flex: 1;
+    max-width: 100px;
+}
+
+.nav-item:hover {
+    color: #eff1f5;
+}
+
+.nav-item.active {
+    color: #3498db;
+}
+
+.nav-item svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-item span {
+    font-size: 12px;
+    font-weight: 500;
+}

@@ -1,0 +1,487 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #141d28;
+    min-height: 100vh;
+    color: #eff1f5;
+}
+
+.container {
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Login Section */
+.login-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-box {
+    background: #2c3e50;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.lock-icon-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.lock-icon {
+    width: 50px;
+    height: 50px;
+    color: #3498db;
+}
+
+.login-box h1 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #eff1f5;
+}
+
+.subtitle {
+    text-align: center;
+    color: #eff1f5;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #eff1f5;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: #34495e;
+    border: 1px solid #475a6e;
+    border-radius: 8px;
+    color: #eff1f5;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #3498db;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #3498db;
+    border: none;
+    border-radius: 8px;
+    color: #eff1f5;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background: #2980b9;
+}
+
+.login-btn:disabled {
+    background: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.error-message {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    padding: 20px 0;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #34495e;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #eff1f5;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background: #e74c3c;
+    border: none;
+    border-radius: 6px;
+    color: #eff1f5;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filter-tab {
+    padding: 12px 24px;
+    background: #2c3e50;
+    border: none;
+    border-radius: 8px;
+    color: #eff1f5;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-tab:hover {
+    background: #34495e;
+}
+
+.filter-tab.active {
+    background: #3498db;
+    color: #eff1f5;
+}
+
+/* Appointments List */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appointment-card {
+    background: #2c3e50;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.appointment-card h3 {
+    font-size: 20px;
+    color: #eff1f5;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.role-badge {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: #34495e;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #eff1f5;
+}
+
+.appointment-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.detail-item {
+    font-size: 14px;
+}
+
+.detail-label {
+    color: #eff1f5;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    color: #eff1f5;
+    font-weight: 500;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+}
+
+.status-approved {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.status-rejected {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.appointment-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #34495e;
+}
+
+.time-slot-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: #34495e;
+    border: 1px solid #475a6e;
+    border-radius: 8px;
+    color: #eff1f5;
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.approve-btn,
+.reject-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.approve-btn {
+    background: #2ecc71;
+    color: #eff1f5;
+}
+
+.approve-btn:hover {
+    background: #27ae60;
+}
+
+.reject-btn {
+    background: #e74c3c;
+    color: #eff1f5;
+}
+
+.reject-btn:hover {
+    background: #c0392b;
+}
+
+.edit-time-btn {
+    flex: 1;
+    padding: 12px;
+    background: #3498db;
+    border: none;
+    border-radius: 8px;
+    color: #eff1f5;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.edit-time-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.edit-time-btn:hover {
+    background: #2980b9;
+}
+
+.delete-btn {
+    flex: 1;
+    padding: 12px;
+    background: #95a5a6;
+    border: none;
+    border-radius: 8px;
+    color: #eff1f5;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.delete-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.delete-btn:hover {
+    background: #e74c3c;
+}
+
+.edit-time-section {
+    margin-bottom: 10px;
+}
+
+.no-appointments {
+    text-align: center;
+    padding: 60px 20px;
+    color: #eff1f5;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .appointment-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+/* Action Popup Modal */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-overlay.show {
+    display: flex;
+}
+
+.popup-content {
+    background: #2c3e50;
+    border-radius: 16px;
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.popup-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: #27ae60;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-icon svg {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+}
+
+.popup-content h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #eff1f5;
+    margin-bottom: 12px;
+}
+
+.popup-content p {
+    font-size: 15px;
+    color: #eff1f5;
+    line-height: 1.5;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
