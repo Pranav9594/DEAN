@@ -118,7 +118,7 @@ CREATE TABLE appointments (
 CREATE INDEX idx_appointments_reference_id ON appointments(reference_id);
 CREATE INDEX idx_appointments_status ON appointments(status);
 CREATE INDEX idx_appointments_created_at ON appointments(created_at DESC);
-```
+``
 
 ## 🌐 Deployment
 
