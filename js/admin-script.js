@@ -85,22 +85,6 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
 
-// Refresh Dashboard
-document.getElementById('refreshDashboardBtn').addEventListener('click', async () => {
-    const refreshBtn = document.getElementById('refreshDashboardBtn');
-    refreshBtn.classList.add('refreshing');
-    refreshBtn.disabled = true;
-    
-    // Add 2 second minimum loading time
-    await Promise.all([
-        loadAppointments(currentStatus),
-        new Promise(resolve => setTimeout(resolve, 2000))
-    ]);
-    
-    refreshBtn.classList.remove('refreshing');
-    refreshBtn.disabled = false;
-});
-
 // Filter Tabs
 document.querySelectorAll('.filter-tab').forEach(tab => {
     tab.addEventListener('click', () => {

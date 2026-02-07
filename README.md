@@ -1,6 +1,6 @@
 # 📅 Dean Appointment Scheduling System
 
-A modern, full-stack web application for scheduling appointments with the Dean's Office. Built with Flask backend, vanilla JavaScript frontend, and Supabase database.
+A modern, mobile-optimized web application for scheduling appointments with the Dean's Office. Built with Flask backend, vanilla JavaScript frontend, and Supabase database.
 
 ## ✨ Features
 
@@ -10,6 +10,7 @@ A modern, full-stack web application for scheduling appointments with the Dean's
 - **Role Selection** - Student, Parent, Visitor, Staff, or Other
 - **Date Selection** - Choose preferred appointment dates
 - **Real-time Updates** - Instant feedback on requests
+- **Mobile Optimized** - Fast, responsive design for all devices
 
 ### 🔐 Admin Features
 - **Secure Login** - Password-protected admin dashboard
@@ -118,7 +119,7 @@ CREATE TABLE appointments (
 CREATE INDEX idx_appointments_reference_id ON appointments(reference_id);
 CREATE INDEX idx_appointments_status ON appointments(status);
 CREATE INDEX idx_appointments_created_at ON appointments(created_at DESC);
-``
+```
 
 ## 🌐 Deployment
 
@@ -145,29 +146,32 @@ git push origin main
 
 ### Public Endpoints
 
-**POST** `/api/appointments`
+**POST** `/.netlify/functions/api/appointments`
 - Create new appointment
 - Body: `{name, role, email, phone, meetingReason, preferredDate}`
 - Returns: `{success: true, referenceId: "phone_number"}`
 
-**GET** `/api/appointments/:referenceId`
-- Get appointment by reference ID (phone number)
+**GET** `/.netlify/functions/api/appointments/status?phone=:phone`
+- Get appointment by phone number
 
 ### Admin Endpoints
 
-**POST** `/api/admin/login`
+**POST** `/.netlify/functions/api/admin/login`
 - Admin login
 - Body: `{username: "admin", password: "admin123"}`
 - Returns: `{success: true, token: "..."}`
 
-**GET** `/api/admin/appointments?status=pending|approved|rejected|all`
+**GET** `/.netlify/functions/api/admin/appointments?status=pending|approved|rejected`
 - Get appointments by status
 
-**PUT** `/api/admin/appointments/:id`
+**PUT** `/.netlify/functions/api/admin/appointments/:id`
 - Update appointment
 - Body: `{status: "approved|rejected", assignedTime: "09:00 AM"}`
 
-**GET** `/api/admin/booked-slots`
+**DELETE** `/.netlify/functions/api/admin/appointments/:id`
+- Delete appointment
+
+**GET** `/.netlify/functions/api/admin/booked-slots`
 - Get all approved appointments with time slots
 
 ## 🔐 Admin Credentials
@@ -190,21 +194,10 @@ git push origin main
 - **Dark Theme** - Modern black UI with blue accents
 - **Animated Icons** - SVG animations for better UX
 - **Form Validation** - Client-side validation
-- **Responsive Design** - Works on all devices
+- **Mobile Optimized** - Fast, responsive design for all devices
 - **Bottom Navigation** - Easy mobile navigation
 - **Success Popups** - User-friendly feedback
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
-## 📄 License
-
-This project is open source and available under the MIT License.
+- **Touch Friendly** - Optimized for mobile interactions
 
 ## 📞 Contact
 
@@ -212,12 +205,6 @@ This project is open source and available under the MIT License.
 - Email: dmsbvdu@bharatividyapeeth.edu
 - Phone: +91 8657008027 / +91 8657008028
 - Tel: 022-31801651
-
-## 🙏 Acknowledgments
-
-- Bharati Vidyapeeth University
-- Department of Management Studies
-- All contributors and users
 
 ---
 
