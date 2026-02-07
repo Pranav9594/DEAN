@@ -4,18 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Status - Dean Appointments</title>
-    <link rel="stylesheet" href="css/status-style.css">
+    <link rel="stylesheet" href="css/status-style.css?v=44">
 </head>
 <body>
     <div class="container">
         <!-- Top Bar -->
         <div class="top-bar">
-            <span class="page-title">Check Status</span>
+            <div class="title-with-icon">
+                <svg class="top-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Calendar Body -->
+                    <rect x="10" y="15" width="80" height="70" rx="10" fill="white" stroke="#1e3a8a" stroke-width="4"/>
+                    <!-- Calendar Header -->
+                    <rect x="10" y="15" width="80" height="20" rx="10" fill="#fbbf24"/>
+                    <!-- Spiral Binding -->
+                    <path d="M 25,10 Q 25,5 30,5" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                    <path d="M 40,10 Q 40,5 45,5" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                    <path d="M 55,10 Q 55,5 60,5" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                    <path d="M 70,10 Q 70,5 75,5" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                    <!-- Date Grid -->
+                    <rect class="date-box" x="18" y="43" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 0s"/>
+                    <rect class="date-box" x="28" y="43" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.15s"/>
+                    <rect class="date-box" x="18" y="52" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.3s"/>
+                    <rect class="date-box" x="28" y="52" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 0.45s"/>
+                    <rect class="date-box" x="18" y="60" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 0.6s"/>
+                    <rect class="date-box" x="28" y="60" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.75s"/>
+                    <rect class="date-box" x="18" y="68" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.9s"/>
+                    <rect class="date-box" x="28" y="68" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 1.05s"/>
+                    <rect class="date-box" x="33" y="60" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 1.2s"/>
+                    <!-- Clock Circle -->
+                    <circle cx="70" cy="65" r="20" fill="#67e8f9" stroke="#1e3a8a" stroke-width="4"/>
+                    <circle cx="70" cy="65" r="17" fill="#67e8f9" stroke="#93c5fd" stroke-width="2"/>
+                    <!-- Clock Hands -->
+                    <path class="clock-hand-1" d="M 70,65 Q 75,58 80,55" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <path class="clock-hand-2" d="M 70,65 L 70,52" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="page-title">Status</span>
+            </div>
         </div>
 
         <!-- Main Content -->
         <div class="content">
-            <h1>Check Status</h1>
+            <div class="status-header" style="display: flex; align-items: center; gap: 10px;">
+                <h1 style="margin-bottom: 0;">Check Status</h1>
+                <button id="refreshBtn" class="refresh-btn small-refresh" title="Refresh results" style="margin-left: 10px; padding: 10px 18px; min-width: 0; min-height: 0; font-size: 15px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    <span>Refresh</span>
+                </button>
+            </div>
             <p class="description">Enter your phone number to view the status of your appointment requests.</p>
 
             <form id="statusForm" class="status-form">
@@ -26,6 +64,10 @@
                         id="phone" 
                         name="phone" 
                         placeholder="Enter your phone number"
+                        minlength="10"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        title="Please enter exactly 10 digits"
                         required
                     >
                 </div>
@@ -73,6 +115,6 @@
         </div>
     </div>
 
-    <script src="js/status-script.js"></script>
+    <script src="js/status-script.js?v=4"></script>
 </body>
 </html>

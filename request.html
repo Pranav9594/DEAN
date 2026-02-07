@@ -4,18 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Appointment - Dean Appointments</title>
-    <link rel="stylesheet" href="css/request-style.css">
+    <link rel="stylesheet" href="css/request-style.css?v=55">
 </head>
 <body>
     <div class="container">
         <!-- Top Bar -->
         <div class="top-bar">
-            <svg class="top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-                <circle cx="12" cy="15" r="2"></circle>
+            <svg class="top-icon" viewBox="0 0 100 100" fill="none">
+                <!-- Calendar Body -->
+                <rect x="15" y="20" width="55" height="55" rx="3" fill="white" stroke="#1e3a8a" stroke-width="3"/>
+                <!-- Yellow Header -->
+                <rect x="18" y="23" width="49" height="10" fill="#fbbf24"/>
+                <!-- Spiral Binding -->
+                <path d="M 20,18 Q 20,12 25,12 Q 30,12 30,18" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                <path d="M 32,18 Q 32,12 37,12 Q 42,12 42,18" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                <path d="M 44,18 Q 44,12 49,12 Q 54,12 54,18" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                <path d="M 56,18 Q 56,12 61,12 Q 66,12 66,18" stroke="#1e3a8a" stroke-width="3" fill="none"/>
+                <!-- Calendar Grid - Row 1 -->
+                <rect class="date-box" x="22" y="38" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 0s"/>
+                <rect class="date-box" x="33" y="38" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.15s"/>
+                <rect class="date-box" x="44" y="38" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.3s"/>
+                <rect class="date-box" x="55" y="38" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.45s"/>
+                <!-- Calendar Grid - Row 2 -->
+                <rect class="date-box" x="22" y="49" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 0.6s"/>
+                <rect class="date-box" x="33" y="49" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.75s"/>
+                <rect class="date-box" x="44" y="49" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 0.9s"/>
+                <!-- Calendar Grid - Row 3 -->
+                <rect class="date-box" x="22" y="60" width="8" height="8" fill="#f87171" rx="1" style="animation-delay: 1.05s"/>
+                <rect class="date-box" x="33" y="60" width="8" height="8" fill="#c4b5fd" rx="1" style="animation-delay: 1.2s"/>
+                <!-- Clock Circle -->
+                <circle cx="70" cy="65" r="20" fill="#67e8f9" stroke="#1e3a8a" stroke-width="4"/>
+                <circle cx="70" cy="65" r="17" fill="#67e8f9" stroke="#93c5fd" stroke-width="2"/>
+                <!-- Clock Hands -->
+                <path class="clock-hand-1" d="M 70,65 Q 75,58 80,55" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+                <path class="clock-hand-2" d="M 70,65 L 70,52" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
             </svg>
             <span class="page-title">Dean Appointments</span>
         </div>
@@ -67,6 +89,10 @@
                         id="phone" 
                         name="phone" 
                         placeholder="Enter your phone number"
+                        minlength="10"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        title="Please enter exactly 10 digits"
                         required
                     >
                 </div>
@@ -102,7 +128,7 @@
 
             <!-- Footer Info -->
             <div class="footer-info">
-                <p>Office Hours: Monday - Friday, 9:00 AM - 5:00 PM</p>
+                <p>Office Hours: Monday - Friday</p>
                 <p>Contact: dmsbvdu@bharatividyapeeth.edu</p>
             </div>
         </div>
@@ -159,6 +185,6 @@
         </div>
     </div>
 
-    <script src="js/request-script.js"></script>
+    <script src="js/request-script.js?v=2"></script>
 </body>
 </html>

@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('appointmentForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    // Confirmation dialog
+    const confirmed = confirm('Do you want to submit the request?');
+    if (!confirmed) return;
+    
     const formData = {
         name: document.getElementById('fullName').value.trim(),
         role: document.getElementById('role').value,
@@ -44,6 +48,12 @@ document.getElementById('appointmentForm').addEventListener('submit', async (e) 
             body: JSON.stringify(formData)
         });
 
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Server is not responding correctly. Please make sure the backend is running.');
+        }
+
         const data = await response.json();
 
         if (response.ok && data.success) {
@@ -54,14 +64,26 @@ document.getElementById('appointmentForm').addEventListener('submit', async (e) 
             // Reset form
             document.getElementById('appointmentForm').reset();
         } else {
-            throw new Error(data.message || 'Failed to submit appointment');
+            throw new Error(data.error || data.message || 'Failed to submit appointment');
         }
     } catch (error) {
         console.error('Error submitting appointment:', error);
+        
+        let errorMessage = error.message;
+        if (error.message.includes('Failed to fetch')) {
+            errorMessage = 'Cannot connect to server. Please make sure the backend is running on http://localhost:5000';
+        } else if (error.message.includes('Phone number must be')) {
+            errorMessage = 'Invalid phone number. Please enter exactly 10 digits.';
+        } else if (error.message.includes('Invalid email')) {
+            errorMessage = 'Invalid email format. Please enter a valid email address.';
+        } else if (error.message.includes('date cannot be in the past')) {
+            errorMessage = 'Preferred date cannot be in the past. Please select a future date.';
+        }
+        
         messageContainer.innerHTML = `
             <div class="error-message">
                 <p>✗ Error submitting appointment request</p>
-                <p style="margin-top: 8px; font-size: 14px;">${error.message || 'Please try again later.'}</p>
+                <p style="margin-top: 8px; font-size: 14px;">${errorMessage}</p>
             </div>
         `;
         messageContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

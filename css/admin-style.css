@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: #141d28;
+    background: #000000;
     min-height: 100vh;
     color: #eff1f5;
 }
@@ -24,15 +24,18 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 140px;
 }
 
 .login-box {
-    background: #2c3e50;
+    background: #1a1a1a;
+    border: 1px solid #2c3e50;
     padding: 40px;
     border-radius: 12px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 .lock-icon-container {
@@ -77,8 +80,8 @@ body {
 .form-group input {
     width: 100%;
     padding: 14px 16px;
-    background: #34495e;
-    border: 1px solid #475a6e;
+    background: #0a0a0a;
+    border: 1px solid #34495e;
     border-radius: 8px;
     color: #eff1f5;
     font-size: 15px;
@@ -90,10 +93,44 @@ body {
     border-color: #3498db;
 }
 
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper input {
+    padding-right: 45px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eff1f5;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #3498db;
+}
+
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
+}
+
 .login-btn {
     width: 100%;
     padding: 14px;
-    background: #3498db;
+    background: #5DADE2;
     border: none;
     border-radius: 8px;
     color: #eff1f5;
@@ -105,7 +142,7 @@ body {
 }
 
 .login-btn:hover {
-    background: #2980b9;
+    background: #85C1E9;
 }
 
 .login-btn:disabled {
@@ -130,7 +167,7 @@ body {
     margin-top: 20px;
     color: #3498db;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .back-link:hover {
@@ -144,17 +181,82 @@ body {
 
 .dashboard-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+}
+
+.dashboard-header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #eff1f5;
+    text-align: center;
+    margin: -30px 0 0 0;
+    width: 100%;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #34495e;
 }
 
-.dashboard-header h1 {
-    font-size: 32px;
-    font-weight: 600;
+.header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.refresh-dashboard-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #1a1a1a;
+    border: 1px solid #34495e;
+    border-radius: 6px;
     color: #eff1f5;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.refresh-dashboard-btn:hover {
+    background: #34495e;
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.refresh-dashboard-btn:active {
+    transform: scale(0.98);
+}
+
+.refresh-dashboard-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.refresh-dashboard-btn.refreshing svg {
+    animation: smoothSpin 0.8s linear infinite !important;
+}
+
+.refresh-dashboard-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+@keyframes smoothSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .logout-btn {
@@ -182,8 +284,8 @@ body {
 
 .filter-tab {
     padding: 12px 24px;
-    background: #2c3e50;
-    border: none;
+    background: #1a1a1a;
+    border: 1px solid #2c3e50;
     border-radius: 8px;
     color: #eff1f5;
     font-size: 15px;
@@ -193,7 +295,8 @@ body {
 }
 
 .filter-tab:hover {
-    background: #34495e;
+    background: #2a2a2a;
+    border-color: #3498db;
 }
 
 .filter-tab.active {
@@ -209,7 +312,8 @@ body {
 }
 
 .appointment-card {
-    background: #2c3e50;
+    background: #1a1a1a;
+    border: 1px solid #2c3e50;
     border-radius: 12px;
     padding: 20px;
 }
@@ -220,13 +324,15 @@ body {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
 .role-badge {
     font-size: 12px;
     padding: 4px 10px;
-    background: #34495e;
+    background: #2c3e50;
+    border: 1px solid #3498db;
     border-radius: 12px;
     font-weight: 500;
     color: #eff1f5;
@@ -241,6 +347,17 @@ body {
 
 .detail-item {
     font-size: 14px;
+    text-align: center;
+}
+
+.phone-date-group {
+    display: flex;
+    gap: 20px;
+}
+
+.phone-section,
+.date-section {
+    flex: 1;
 }
 
 .detail-label {
@@ -284,11 +401,16 @@ body {
     border-top: 1px solid #34495e;
 }
 
+.rejected-actions {
+    display: flex;
+    justify-content: center;
+}
+
 .time-slot-select {
     width: 100%;
     padding: 12px 16px;
-    background: #34495e;
-    border: 1px solid #475a6e;
+    background: #0a0a0a;
+    border: 1px solid #34495e;
     border-radius: 8px;
     color: #eff1f5;
     font-size: 14px;
@@ -302,7 +424,8 @@ body {
 }
 
 .approve-btn,
-.reject-btn {
+.reject-btn,
+.cancel-btn {
     flex: 1;
     padding: 12px;
     border: none;
@@ -329,6 +452,15 @@ body {
 
 .reject-btn:hover {
     background: #c0392b;
+}
+
+.cancel-btn {
+    background: #5DADE2;
+    color: #eff1f5;
+}
+
+.cancel-btn:hover {
+    background: #3498db;
 }
 
 .edit-time-btn {
@@ -389,9 +521,9 @@ body {
 
 .no-appointments {
     text-align: center;
-    padding: 60px 20px;
+    padding: 140px 20px 60px;
     color: #eff1f5;
-    font-size: 16px;
+    font-size: 22px;
 }
 
 @media (max-width: 768px) {
@@ -426,13 +558,14 @@ body {
 }
 
 .popup-content {
-    background: #2c3e50;
+    background: #1a1a1a;
+    border: 1px solid #2c3e50;
     border-radius: 16px;
     padding: 40px 30px;
     max-width: 400px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     animation: slideUp 0.3s ease;
 }
 

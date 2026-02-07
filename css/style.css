@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.3);
+    touch-action: manipulation;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: #141d28;
+    background: #000000;
     min-height: 100vh;
     padding: 0;
     margin: 0;
@@ -16,7 +18,7 @@ body {
     max-width: 100%;
     min-height: 100vh;
     margin: 0;
-    background: #141d28;
+    background: #000000;
     padding: 30px 20px 80px;
     color: #eff1f5;
 }
@@ -24,27 +26,85 @@ body {
 /* Header */
 .header {
     text-align: center;
-    padding: 20px 0 30px;
+    padding: 10px 0 30px;
 }
 
 .icon-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    margin-top: -10px;
 }
 
 .calendar-icon {
     width: 60px;
     height: 60px;
-    color: #3498db;
-    stroke-width: 1.5;
+}
+
+.calendar-icon .date-box {
+    animation: dateAppear 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes dateAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.calendar-icon .clock-hand-1 {
+    animation: clockRotate 2s linear infinite;
+    transform-origin: 70px 65px;
+}
+
+.calendar-icon .clock-hand-2 {
+    animation: clockRotateSlow 6s linear infinite;
+    transform-origin: 70px 65px;
+}
+
+@keyframes clockRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes clockRotateSlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
-    color: #eff1f5;
+    background: linear-gradient(90deg, #ffffff, #3498db, #000000, #5dade2, #ffffff);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientFlow 8s ease-in-out infinite;
+    margin-top: -10px;
     margin-bottom: 8px;
+}
+
+@keyframes gradientFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .subtitle {
@@ -61,10 +121,11 @@ h1 {
 
 /* Info Sections */
 .info-section {
-    background: #34495e;
+    background: #1a1a1a;
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 15px;
+    border: 1px solid #2c3e50;
 }
 
 .info-section h2 {
@@ -130,32 +191,35 @@ h1 {
 
 /* Admin Login Button */
 .admin-login-container {
-    margin: 0 0 20px 0;
+    margin: -20px 0 20px 0;
 }
 
 .admin-login-btn {
     width: 100%;
-    background: #34495e;
-    border: none;
-    border-radius: 12px;
-    padding: 18px 20px;
+    background: #5DADE2;
+    border: 1px solid #5DADE2;
+    border-radius: 10px;
+    padding: 14px 14px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     transition: background 0.2s;
-    color: #eff1f5;
-    font-size: 15px;
-    font-weight: 500;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .admin-login-btn:hover {
-    background: #3d5368;
+    background: #85C1E9;
+    border-color: #85C1E9;
+    box-shadow: 0 0 15px rgba(93, 173, 226, 0.3);
 }
 
 .lock-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     color: #eff1f5;
 }
 
@@ -172,8 +236,8 @@ h1 {
 }
 
 .version-info p {
-    font-size: 13px;
-    color: #7f8c8d;
+    font-size: 14px;
+    color: #e8e8e8;
     margin: 4px 0;
 }
 
@@ -183,7 +247,7 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: #34495e;
+    background: #0a0a0a;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -198,25 +262,125 @@ h1 {
     gap: 4px;
     text-decoration: none;
     color: #95a5a6;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
     flex: 1;
     max-width: 100px;
+    padding: 8px;
+    border-radius: 8px;
 }
 
 .nav-item:hover {
     color: #eff1f5;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+    background: rgba(52, 152, 219, 0.1);
 }
 
 .nav-item.active {
     color: #3498db;
+    text-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5), 0 0 30px rgba(52, 152, 219, 0.3);
+    background: rgba(52, 152, 219, 0.15);
 }
 
 .nav-item svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 0 0px transparent);
+    transition: filter 0.3s ease;
+}
+
+.nav-item:hover svg {
+    filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.6));
+}
+
+.nav-item.active svg {
+    filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.8));
 }
 
 .nav-item span {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px 80px;
+    }
+    
+    .header {
+        padding: 10px 0 25px;
+    }
+    
+    .calendar-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+    
+    .info-section {
+        padding: 18px;
+    }
+    
+    .info-section h2 {
+        font-size: 15px;
+    }
+    
+    .info-section p,
+    .contact-item,
+    .hours-day,
+    .hours-time {
+        font-size: 14px;
+    }
+    
+    .admin-login-btn {
+        padding: 14px;
+        font-size: 16px;
+        min-height: 52px;
+    }
+    
+    .nav-item {
+        padding: 10px;
+    }
+    
+    .nav-item svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .nav-item span {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 12px 80px;
+    }
+    
+    .calendar-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    .info-section {
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .bottom-nav {
+        padding: 10px 0 6px;
+    }
 }

@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Password visibility toggle
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = this.querySelector('.eye-icon');
+    const eyeOffIcon = this.querySelector('.eye-off-icon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.style.display = 'none';
+        eyeOffIcon.style.display = 'block';
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.style.display = 'block';
+        eyeOffIcon.style.display = 'none';
+    }
+});
+
 // Login Form
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -60,9 +77,28 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
 // Logout
 document.getElementById('logoutBtn').addEventListener('click', () => {
+    const confirmed = confirm('Are you sure you want to log out?');
+    if (!confirmed) return;
+    
     adminToken = null;
     sessionStorage.removeItem('adminToken');
-    showLogin();
+    window.location.href = 'index.html';
+});
+
+// Refresh Dashboard
+document.getElementById('refreshDashboardBtn').addEventListener('click', async () => {
+    const refreshBtn = document.getElementById('refreshDashboardBtn');
+    refreshBtn.classList.add('refreshing');
+    refreshBtn.disabled = true;
+    
+    // Add 2 second minimum loading time
+    await Promise.all([
+        loadAppointments(currentStatus),
+        new Promise(resolve => setTimeout(resolve, 2000))
+    ]);
+    
+    refreshBtn.classList.remove('refreshing');
+    refreshBtn.disabled = false;
 });
 
 // Filter Tabs
@@ -172,7 +208,7 @@ function displayAppointments(appointments) {
                             <button class="approve-btn" onclick="saveTimeSlot(${apt.id})">
                                 Save
                             </button>
-                            <button class="reject-btn" onclick="cancelEdit(${apt.id})">
+                            <button class="cancel-btn" onclick="cancelEdit(${apt.id})">
                                 Cancel
                             </button>
                         </div>
@@ -198,7 +234,7 @@ function displayAppointments(appointments) {
                 </div>
             ` : ''}
             ${apt.status === 'rejected' ? `
-                <div class="appointment-actions">
+                <div class="appointment-actions rejected-actions">
                     <button class="delete-btn" onclick="deleteAppointment(${apt.id})">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="3 6 5 6 21 6"></polyline>
@@ -231,6 +267,14 @@ function generateTimeSlots() {
 }
 
 async function updateAppointment(id, status) {
+    // Confirmation dialog for rejection
+    if (status === 'rejected') {
+        const confirmed = confirm('Are you sure you want to reject this appointment?');
+        if (!confirmed) {
+            return;
+        }
+    }
+
     const timeSlotSelect = document.getElementById(`timeSlot-${id}`);
     const assignedTime = timeSlotSelect ? timeSlotSelect.value : null;
 
@@ -263,7 +307,13 @@ async function updateAppointment(id, status) {
                 loadAppointments(currentStatus);
             }, 500);
         } else {
-            alert(data.message || 'Error updating appointment');
+            // Handle specific error messages
+            const errorMsg = data.error || data.message || 'Error updating appointment';
+            if (errorMsg.includes('time slot is already booked')) {
+                alert('⚠️ Time Slot Conflict\n\nThis time slot is already booked for the selected date. Please choose a different time.');
+            } else {
+                alert(errorMsg);
+            }
         }
     } catch (error) {
         console.error('Error updating appointment:', error);
@@ -345,7 +395,13 @@ async function saveTimeSlot(id) {
             // Show success popup
             showActionPopup('approved');
         } else {
-            alert(data.message || 'Error updating time slot');
+            // Handle specific error messages
+            const errorMsg = data.error || data.message || 'Error updating time slot';
+            if (errorMsg.includes('time slot is already booked')) {
+                alert('⚠️ Time Slot Conflict\n\nThis time slot is already booked for the selected date. Please choose a different time.');
+            } else {
+                alert(errorMsg);
+            }
         }
     } catch (error) {
         console.error('Error updating time slot:', error);

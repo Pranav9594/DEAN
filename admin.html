@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Dean Appointments</title>
-    <link rel="stylesheet" href="css/admin-style.css">
+    <link rel="stylesheet" href="css/admin-style.css?v=28">
 </head>
 <body>
     <div class="container">
@@ -28,7 +28,19 @@
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     <button type="submit" class="login-btn">Login</button>
@@ -36,7 +48,7 @@
 
                 <div id="loginError" class="error-message" style="display: none;"></div>
                 
-                <a href="index.html" class="back-link">← Back to Home</a>
+                <a href="request.html" class="back-link">← Back to Home</a>
             </div>
         </div>
 
@@ -44,6 +56,16 @@
         <div id="dashboardSection" class="dashboard-section" style="display: none;">
             <div class="dashboard-header">
                 <h1>Admin Dashboard</h1>
+            </div>
+            
+            <div class="header-buttons">
+                <button id="refreshDashboardBtn" class="refresh-dashboard-btn" title="Refresh appointments">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    <span>Refresh</span>
+                </button>
                 <button id="logoutBtn" class="logout-btn">Logout</button>
             </div>
 
@@ -78,6 +100,6 @@
         </div>
     </div>
 
-    <script src="js/admin-script.js"></script>
+    <script src="js/admin-script.js?v=14"></script>
 </body>
 </html>
