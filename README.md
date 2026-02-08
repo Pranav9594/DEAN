@@ -32,15 +32,15 @@ A modern, mobile-optimized web application for scheduling appointments with the 
 - Supabase (PostgreSQL) database
 
 **Deployment:**
-- Netlify (Serverless functions)
+- Vercel (Serverless functions)
 - GitHub for version control
 
 ## 📁 Project Structure
 
 ```
 project/
-├── .netlify/functions/    # Netlify serverless functions
-│   └── api.py            # API endpoints with Supabase
+├── api/                  # Vercel serverless functions
+│   └── index.py         # API endpoints with Supabase
 ├── css/                  # Stylesheets
 │   ├── admin-style.css
 │   ├── request-style.css
@@ -123,55 +123,55 @@ CREATE INDEX idx_appointments_created_at ON appointments(created_at DESC);
 
 ## 🌐 Deployment
 
-### Deploy to Netlify
+### Deploy to Vercel
 
 1. **Push to GitHub**
 ```bash
 git add .
-git commit -m "Deploy to Netlify"
+git commit -m "Deploy to Vercel"
 git push origin main
 ```
 
-2. **Connect to Netlify**
-- Go to [Netlify](https://netlify.com)
+2. **Connect to Vercel**
+- Go to [Vercel](https://vercel.com)
 - Import your GitHub repository
 - Add environment variables:
   - `SUPABASE_URL`
   - `SUPABASE_KEY`
 
 3. **Deploy**
-- Netlify auto-deploys on push
+- Vercel auto-deploys on push
 
 ## 📡 API Endpoints
 
 ### Public Endpoints
 
-**POST** `/.netlify/functions/api/appointments`
+**POST** `/api/appointments`
 - Create new appointment
 - Body: `{name, role, email, phone, meetingReason, preferredDate}`
 - Returns: `{success: true, referenceId: "phone_number"}`
 
-**GET** `/.netlify/functions/api/appointments/status?phone=:phone`
+**GET** `/api/appointments/status?phone=:phone`
 - Get appointment by phone number
 
 ### Admin Endpoints
 
-**POST** `/.netlify/functions/api/admin/login`
+**POST** `/api/admin/login`
 - Admin login
 - Body: `{username: "admin", password: "admin123"}`
 - Returns: `{success: true, token: "..."}`
 
-**GET** `/.netlify/functions/api/admin/appointments?status=pending|approved|rejected`
+**GET** `/api/admin/appointments?status=pending|approved|rejected`
 - Get appointments by status
 
-**PUT** `/.netlify/functions/api/admin/appointments/:id`
+**PUT** `/api/admin/appointments/:id`
 - Update appointment
 - Body: `{status: "approved|rejected", assignedTime: "09:00 AM"}`
 
-**DELETE** `/.netlify/functions/api/admin/appointments/:id`
+**DELETE** `/api/admin/appointments/:id`
 - Delete appointment
 
-**GET** `/.netlify/functions/api/admin/booked-slots`
+**GET** `/api/admin/booked-slots`
 - Get all approved appointments with time slots
 
 ## 🔐 Admin Credentials
