@@ -10,7 +10,17 @@ import time
 app = Flask(__name__)
 CORS(app)
 
-supabase = create_client(os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_KEY'))
+_supabase = None
+
+def get_supabase():
+    global _supabase
+    if _supabase is None:
+        url = os.environ.get('SUPABASE_URL')
+        key = os.environ.get('SUPABASE_KEY')
+        if not url or not key:
+            raise RuntimeError('SUPABASE_URL and SUPABASE_KEY environment variables are not set')
+        _supabase = create_client(url, key)
+    return _supabase
 
 # In-memory token store and login rate limiter
 valid_tokens = set()
@@ -54,9 +64,9 @@ def create_appointment():
 
     for _ in range(5):
         reference_id = secrets.token_hex(4).upper()
-        existing = supabase.table('appointments').select('id').eq('reference_id', reference_id).execute()
+        existing = get_supabase().table('appointments').select('id').eq('reference_id', reference_id).execute()
         if not existing.data:
-            supabase.table('appointments').insert({
+            get_supabase().table('appointments').insert({
                 'reference_id': reference_id,
                 'name': data['name'],
                 'role': data['role'],
@@ -75,12 +85,12 @@ def get_appointments_by_phone():
     phone = request.args.get('phone', '').strip()
     if not phone.isdigit() or len(phone) != 10:
         return jsonify({'error': 'Invalid phone number format'}), 400
-    result = supabase.table('appointments').select('*').eq('phone', phone).order('created_at', desc=True).execute()
+    result = get_supabase().table('appointments').select('*').eq('phone', phone).order('created_at', desc=True).execute()
     return jsonify({'appointments': result.data})
 
 @app.route('/api/appointments/<reference_id>', methods=['GET'])
 def get_appointment(reference_id):
-    result = supabase.table('appointments').select('*').eq('reference_id', reference_id).execute()
+    result = get_supabase().table('appointments').select('*').eq('reference_id', reference_id).execute()
     if not result.data:
         return jsonify({'error': 'Appointment not found'}), 404
     return jsonify(result.data[0])
@@ -116,9 +126,9 @@ def admin_login():
 def get_all_appointments():
     status = request.args.get('status', 'all')
     if status == 'all':
-        result = supabase.table('appointments').select('*').order('created_at', desc=True).execute()
+        result = get_supabase().table('appointments').select('*').order('created_at', desc=True).execute()
     else:
-        result = supabase.table('appointments').select('*').eq('status', status).order('created_at', desc=True).execute()
+        result = get_supabase().table('appointments').select('*').eq('status', status).order('created_at', desc=True).execute()
     return jsonify(result.data)
 
 @app.route('/api/admin/appointments/<int:apt_id>', methods=['PUT'])
@@ -138,9 +148,9 @@ def update_appointment(apt_id):
         return jsonify({'error': 'Missing required fields'}), 400
 
     if data.get('status') == 'approved' and 'assignedTime' in data:
-        apt = supabase.table('appointments').select('preferred_date').eq('id', apt_id).execute()
+        apt = get_supabase().table('appointments').select('preferred_date').eq('id', apt_id).execute()
         if apt.data:
-            conflict = supabase.table('appointments').select('id') \
+            conflict = get_supabase().table('appointments').select('id') \
                 .eq('preferred_date', apt.data[0]['preferred_date']) \
                 .eq('assigned_time', data['assignedTime']) \
                 .eq('status', 'approved') \
@@ -148,19 +158,19 @@ def update_appointment(apt_id):
             if conflict.data:
                 return jsonify({'error': 'This time slot is already booked for the selected date'}), 409
 
-    supabase.table('appointments').update(update_data).eq('id', apt_id).execute()
+    get_supabase().table('appointments').update(update_data).eq('id', apt_id).execute()
     return jsonify({'success': True})
 
 @app.route('/api/admin/appointments/<int:apt_id>', methods=['DELETE'])
 @require_auth
 def delete_appointment(apt_id):
-    supabase.table('appointments').delete().eq('id', apt_id).execute()
+    get_supabase().table('appointments').delete().eq('id', apt_id).execute()
     return jsonify({'success': True})
 
 @app.route('/api/admin/booked-slots', methods=['GET'])
 @require_auth
 def get_booked_slots():
-    result = supabase.table('appointments').select('preferred_date, assigned_time') \
+    result = get_supabase().table('appointments').select('preferred_date, assigned_time') \
         .eq('status', 'approved').not_.is_('assigned_time', 'null') \
         .order('preferred_date').order('assigned_time').execute()
     return jsonify(result.data)
