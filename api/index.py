@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from supabase import create_client
 from datetime import datetime
@@ -7,7 +7,7 @@ import secrets
 import os
 import time
 
-app = Flask(__name__, static_folder='..')
+app = Flask(__name__)
 CORS(app)
 
 supabase = create_client(os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_KEY'))
@@ -26,14 +26,6 @@ def require_auth(f):
             return jsonify({'error': 'Unauthorized'}), 401
         return f(*args, **kwargs)
     return decorated
-
-@app.route('/')
-def index():
-    return send_from_directory('..', 'request.html')
-
-@app.route('/<path:path>')
-def serve_static(path):
-    return send_from_directory('..', path)
 
 @app.route('/api/appointments', methods=['POST'])
 def create_appointment():
