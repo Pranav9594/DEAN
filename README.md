@@ -83,6 +83,8 @@ Create `.env` file:
 ```env
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_anon_key
+ADMIN_USER=your_admin_username
+ADMIN_PASS=your_admin_password
 ```
 
 4. **Run the application**
@@ -138,6 +140,8 @@ git push origin main
 - Add environment variables:
   - `SUPABASE_URL`
   - `SUPABASE_KEY`
+  - `ADMIN_USER`
+  - `ADMIN_PASS`
 
 3. **Deploy**
 - Vercel auto-deploys on push
@@ -158,8 +162,8 @@ git push origin main
 
 **POST** `/api/admin/login`
 - Admin login
-- Body: `{username: "admin", password: "admin123"}`
-- Returns: `{success: true, token: "..."}`
+- Body: `{username: "<ADMIN_USER>", password: "<ADMIN_PASS>"}`
+- Returns: `{success: true, token: "..."`}
 
 **GET** `/api/admin/appointments?status=pending|approved|rejected`
 - Get appointments by status
