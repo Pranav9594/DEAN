@@ -195,4 +195,4 @@ git push origin main
 - **Success Popups** - User-friendly feedback
 - **Touch Friendly** - Optimized for mobile interactions
 
-Made with ❤️ for Dean's Office Appointment Management.
+Made with ❤️ for Dean's Office Appointment Management..
